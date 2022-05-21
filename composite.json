@@ -1,0 +1,70 @@
+{
+    "graphs": [
+        {
+            "graphId": "graph2",
+            "compositeRequest": [
+                {
+                    "method": "GET",
+                    "referenceId": "parent_account",
+                    "url": "/services/data/v53.0/sobjects/Account/External_Id__c/fc512fac-d3e0-441a-9c32-d226e1581694"
+                },
+                {
+                    "url": "/services/data/v53.0/sobjects/Account/",
+                    "body": {
+                        "name": "@{parent_account.Name} APAC",
+                        "description": "Child account For @{parent_account.Name} in APAC Region",
+                        "Phone": "@{parent_account.Phone}",
+                        "External_Id__c":"893d0807-4d17-4a55-bee1-2c7fae0ac3f6",
+                        "ParentId": "@{parent_account.Id}"
+                    },
+                    "method": "POST",
+                    "referenceId": "child_account"
+                },
+                {
+                    "url": "/services/data/v53.0/sobjects/Contact/",
+                    "body": {
+                        "FirstName": "@{parent_account.Name} APAC",
+                        "LastName": "Primary Contact",
+                        "Phone": "@{parent_account.Phone}",
+                        "AccountId": "@{child_account.id}"
+                    },
+                    "method": "POST",
+                    "referenceId": "primary_contact_under_child_account"
+                },
+                {
+                    "url": "/services/data/v53.0/sobjects/Campaign/",
+                    "body": {
+                        "name": "APAC Region Campaign"
+                    },
+                    "method": "POST",
+                    "referenceId": "primary_campaign"
+                },
+                {
+                    "url": "/services/data/v53.0/sobjects/Opportunity/",
+                    "body": {
+                        "name": "@{parent_account.Name} APAC Opportunity",
+                        "stageName": "Value Proposition",
+                        "closeDate": "2025-12-31",
+                        "CampaignId": "@{primary_campaign.id}",
+                        "AccountId": "@{child_account.id}"
+                    },
+                    "method": "POST",
+                    "referenceId": "primary_opportunity"
+                },
+                {
+                    "url": "/services/data/v53.0/sobjects/Task/",
+                    "body": {
+                        "WhatId": "@{primary_opportunity.id}",
+                        "WhoId": "@{primary_contact_under_child_account.id}",
+                        "Subject": "Call",
+                        "Status": "Not Started",
+                        "Description": "Default Task Opportunity"
+                    },
+                    "method": "POST",
+                    "referenceId": "default_task_call"
+                }
+            ]
+        }
+    ]
+}
+

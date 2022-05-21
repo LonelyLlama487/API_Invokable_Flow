@@ -1,0 +1,29 @@
+{
+    "inputs": [
+        {
+            "ParseVariable": [
+                {
+                    "FirstName": "Trevor",
+                    "LastName": "Phillips",
+                    "Phone": "0902261721",
+                    "AccountId": "0010p0000163KHhAAM",
+                    "Email": "TP.gtav@example.com"
+                },
+                {
+                    "FirstName": "Franklin",
+                    "LastName":"Clinton",
+                    "Phone": "8802165521",
+                    "AccountId": "0010p0000163KHhAAM",
+                    "Email": "FC.gtav@example.com"
+                },
+                {
+                    "FirstName": "Michael",
+                    "LastName":"D'Santa",
+                    "Phone": "7876165441",
+                    "AccountId": "0010p0000163KHhAAM",
+                    "Email": "MD.gtav@example.com"
+                }
+            ]
+        }
+    ]
+}
